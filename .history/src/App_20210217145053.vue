@@ -2,7 +2,7 @@
   <h1>Reaction Timer</h1>
   <p>Test your reactions. Click/tap the green box as soon as it appears.</p>
   <button class="start-button" @click="start" :disabled="isPlaying">{{ startButtonText }}</button>
-  <Results v-if="showResults" :score="score" />
+  <Results v-if="showResults" :score="20" />
   <Block v-if="isPlaying" :delay="delay" @cheatedGame="gameEndedNoResults" @endGame="gameFinished" />
   <Failed v-if="failed" />
 </template>

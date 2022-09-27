@@ -1,7 +1,7 @@
 <template>
   <h1>Reaction Timer</h1>
   <p>Test your reactions. Click/tap the green box as soon as it appears.</p>
-  <button class="start-button" @click="start" :disabled="isPlaying">{{ startButtonText }}</button>
+  <button class="start-button" @click="start" :disabled="isPlaying">Start</button>
   <Results v-if="showResults" :score="score" />
   <Block v-if="isPlaying" :delay="delay" @cheatedGame="gameEndedNoResults" @endGame="gameFinished" />
   <Failed v-if="failed" />
@@ -16,7 +16,6 @@ export default {
   name: 'App',
   data() {
     return {
-      startButtonText: 'Start',
       isPlaying: false,
       delay: null,
       score: null,
@@ -40,12 +39,10 @@ export default {
       this.score = results;
       this.showResults = true;
       this.isPlaying = false;
-      this.startButtonText = 'Restart';
     },
     gameEndedNoResults() {
       this.isPlaying = false;
       this.failed = true;
-      this.startButtonText = 'Restart';
     }
   }
 }

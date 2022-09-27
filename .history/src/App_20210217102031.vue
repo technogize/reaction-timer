@@ -40,7 +40,6 @@ export default {
       this.score = results;
       this.showResults = true;
       this.isPlaying = false;
-      this.startButtonText = 'Restart';
     },
     gameEndedNoResults() {
       this.isPlaying = false;

@@ -1,22 +1,19 @@
 <template>
-  <h1>Reaction Timer</h1>
-  <p>Test your reactions. Click/tap the green box as soon as it appears.</p>
-  <button class="start-button" @click="start" :disabled="isPlaying">{{ startButtonText }}</button>
+  <h1>Ninja Reaction Timer</h1>
+  <button class="start-button" @click="start" :disabled="isPlaying">Play</button>
   <Results v-if="showResults" :score="score" />
   <Block v-if="isPlaying" :delay="delay" @cheatedGame="gameEndedNoResults" @endGame="gameFinished" />
-  <Failed v-if="failed" />
+  <div v-if="failed">You cannot click before you see the green block </div>
 </template>
 
 <script>
 import Block from './components/Block.vue';
 import Results from './components/Results.vue';
-import Failed from './components/Failed.vue';
 
 export default {
   name: 'App',
   data() {
     return {
-      startButtonText: 'Start',
       isPlaying: false,
       delay: null,
       score: null,
@@ -26,8 +23,7 @@ export default {
   },
   components: {
     Block,
-    Results,
-    Failed
+    Results
   },
   methods: {
     start() {
@@ -40,12 +36,10 @@ export default {
       this.score = results;
       this.showResults = true;
       this.isPlaying = false;
-      this.startButtonText = 'Restart';
     },
     gameEndedNoResults() {
       this.isPlaying = false;
       this.failed = true;
-      this.startButtonText = 'Restart';
     }
   }
 }
@@ -59,8 +53,6 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
-  max-width: 1440px;
-  margin: 0 auto;
 }
 
 .start-button {
